@@ -1,11 +1,13 @@
 package com.hkarabakla.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Book {
 
     @Id
+    @Column(name = "order_id")
     private String isbn;
 
     private String name;
@@ -13,6 +15,28 @@ public class Book {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
+
+    @ManyToMany(mappedBy = "order_books")
+    private Set<Order> orders;
+
+    @ManyToMany(mappedBy = "author_books")
+    private Set<Author> authors;
+
+    public Set<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
 
     public String getIsbn() {
         return isbn;
@@ -43,6 +67,9 @@ public class Book {
         return "Book{" +
                 "isbn='" + isbn + '\'' +
                 ", name='" + name + '\'' +
+                ", category=" + category +
+                ", orders=" + orders +
+                ", authors=" + authors +
                 '}';
     }
 }
