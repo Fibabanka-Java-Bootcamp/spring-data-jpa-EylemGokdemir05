@@ -15,8 +15,8 @@ public class User {
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
-    @OneToMany(mappedBy = "user")
-    private Set<Order> order;
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
+    private Set<Orders> orders;
 
     public int getId() {
         return id;
@@ -42,12 +42,12 @@ public class User {
         this.address = address;
     }
 
-    public Set<Order> getOrder() {
-        return order;
+    public Set<Orders> getOrder() {
+        return orders;
     }
 
-    public void setOrder(Set<Order> order) {
-        this.order = order;
+    public void setOrder(Set<Orders> orders) {
+        this.orders = orders;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", address=" + address +
-                ", order=" + order +
+                ", order=" + orders +
                 '}';
     }
 }

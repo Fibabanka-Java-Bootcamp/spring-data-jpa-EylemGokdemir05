@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-public class Order {
+public class Orders {
 
     @Id
     @GeneratedValue
@@ -68,7 +68,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
+        return "Orders{" +
                 "id=" + id +
                 ", createdDate=" + createdDate +
                 ", total=" + total +

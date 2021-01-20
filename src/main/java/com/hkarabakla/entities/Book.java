@@ -17,7 +17,7 @@ public class Book {
     private Category category;
 
     @ManyToMany(mappedBy = "order_books")
-    private Set<Order> orders;
+    private Set<Orders> orders;
 
     @ManyToMany(mappedBy = "author_books")
     private Set<Author> authors;
@@ -30,11 +30,11 @@ public class Book {
         this.authors = authors;
     }
 
-    public Set<Order> getOrders() {
+    public Set<Orders> getOrders() {
         return orders;
     }
 
-    public void setOrders(Set<Order> orders) {
+    public void setOrders(Set<Orders> orders) {
         this.orders = orders;
     }
 
