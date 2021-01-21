@@ -1,6 +1,7 @@
 package com.hkarabakla.entities;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -12,18 +13,18 @@ public class Author {
 
     private String name;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(
             name = "authors_book",
             joinColumns = @JoinColumn(name = "author_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id"))
-    private Set<Book> author_books;
+    private List<Book> author_books;
 
-    public Set<Book> getAuthor_books() {
+    public List<Book> getAuthor_books() {
         return author_books;
     }
 
-    public void setAuthor_books(Set<Book> author_books) {
+    public void setAuthor_books(List<Book> author_books) {
         this.author_books = author_books;
     }
 

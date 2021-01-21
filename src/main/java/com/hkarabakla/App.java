@@ -1,5 +1,6 @@
 package com.hkarabakla;
 
+import com.hkarabakla.services.BookService;
 import com.hkarabakla.services.CategoryService;
 import com.hkarabakla.services.OrderService;
 import com.hkarabakla.services.UserService;
@@ -21,6 +22,9 @@ public class App
 
         OrderService orderService= (OrderService) appContext.getBean("orderService");
         orderService.orderOperations();
+
+        BookService bookService= (BookService) appContext.getBean("bookService");
+        bookService.bookOperations();
         appContext.close();
     }
 }

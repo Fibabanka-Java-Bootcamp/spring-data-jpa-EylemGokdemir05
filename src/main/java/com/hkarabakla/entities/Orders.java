@@ -1,7 +1,9 @@
 package com.hkarabakla.entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -11,7 +13,7 @@ public class Orders {
     @GeneratedValue
     private int id;
 
-    private Date createdDate;
+    private LocalDate createdDate;
 
     private double total;
 
@@ -24,13 +26,13 @@ public class Orders {
             name = "book_orders",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id"))
-    private Set<Book> order_books;
+    private List<Book> order_books;
 
-    public Set<Book> getOrder_books() {
+    public List<Book> getOrder_books() {
         return order_books;
     }
 
-    public void setOrder_books(Set<Book> order_books) {
+    public void setOrder_books(List<Book> order_books) {
         this.order_books = order_books;
     }
 
@@ -42,11 +44,11 @@ public class Orders {
         this.id = id;
     }
 
-    public Date getCreatedDate() {
+    public LocalDate getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(LocalDate createdDate) {
         this.createdDate = createdDate;
     }
 

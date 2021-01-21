@@ -1,13 +1,13 @@
 package com.hkarabakla.entities;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 public class Book {
 
     @Id
-    @Column(name = "order_id")
     private String isbn;
 
     private String name;
@@ -19,14 +19,15 @@ public class Book {
     @ManyToMany(mappedBy = "order_books")
     private Set<Orders> orders;
 
-    @ManyToMany(mappedBy = "author_books")
-    private Set<Author> authors;
+    @ManyToMany(mappedBy = "author_books",cascade = CascadeType.ALL)
+    private List<Author> authors;
 
-    public Set<Author> getAuthors() {
+
+    public List<Author> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(Set<Author> authors) {
+    public void setAuthors(List<Author> authors) {
         this.authors = authors;
     }
 
@@ -67,9 +68,6 @@ public class Book {
         return "Book{" +
                 "isbn='" + isbn + '\'' +
                 ", name='" + name + '\'' +
-                ", category=" + category +
-                ", orders=" + orders +
-                ", authors=" + authors +
                 '}';
     }
 }
