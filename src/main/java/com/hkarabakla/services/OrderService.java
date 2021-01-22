@@ -1,38 +1,37 @@
 package com.hkarabakla.services;
 
-import com.hkarabakla.entities.Book;
 import com.hkarabakla.entities.Orders;
+import com.hkarabakla.repositories.BookRepo;
 import com.hkarabakla.repositories.OrderRepo;
+import com.hkarabakla.repositories.UserRepo;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.Set;
-import java.util.UUID;
+import java.util.Arrays;
 
 @Component
 public class OrderService {
 
     private final OrderRepo repo;
+    private final BookRepo bookRepo;
+    private final UserRepo userRepo;
 
-    public OrderService(OrderRepo repo) {
+    public OrderService(OrderRepo repo, BookRepo bookRepo, UserRepo userRepo) {
         this.repo = repo;
+        this.bookRepo = bookRepo;
+        this.userRepo = userRepo;
     }
 
     public void orderOperations(){
-        /*Book book = new Book();
-        book.setIsbn(UUID.randomUUID().toString());
-        book.setName("Spring in Action");*/
-
         Orders orders=new Orders();
-        orders.setId(4);
+        orders.setUser(userRepo.findByName("user"));
         orders.setCreatedDate(LocalDate.now());
-        orders.setTotal(15.0);
-        //orders.setOrder_books(Collections.singletonList(book));
+        orders.setTotal(bookRepo.findByName("Clean Code").getPrice());
+        orders.setOrder_books(Arrays.asList(bookRepo.findByName("Clean Code")));
 
         repo.save(orders);
         System.out.println(orders);
-        //System.out.println(repo.findAllByCreatedDateAndAndTotal(LocalDate.now(),17.0));
-        //System.out.println("orders is coming");
+        System.out.println(repo.findAllByUser_Name("user"));
+        System.out.println(bookRepo.findByName("Clean Code"));
     }
 }

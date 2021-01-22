@@ -9,6 +9,7 @@ import com.hkarabakla.repositories.CategoryRepo;
 import com.hkarabakla.repositories.OrderRepo;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -31,6 +32,11 @@ public class BookService {
         Book book=new Book();
         book.setIsbn(UUID.randomUUID().toString());
         book.setName("Clean Code");
+        book.setDescription("I love Clean Code :)");
+        book.setPublishedDate(LocalDate.of(1994,10,07));
+        book.setAddedDate(LocalDate.of(1995,05,31));
+        book.setCurrency("TL");
+        book.setImageUrl("https://spring.io/projects");
         Author author=new Author();
         author.setName("Anonymous");
         author.setAuthor_books(Arrays.asList(book));

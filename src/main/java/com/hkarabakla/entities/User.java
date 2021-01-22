@@ -15,7 +15,7 @@ public class User {
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Set<Orders> orders;
 
     public int getId() {
@@ -56,7 +56,6 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", address=" + address +
-                ", order=" + orders +
                 '}';
     }
 }

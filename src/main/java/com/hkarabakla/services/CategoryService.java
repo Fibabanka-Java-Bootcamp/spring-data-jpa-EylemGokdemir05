@@ -35,9 +35,6 @@ public class CategoryService {
         categoryRepo.save(c1);
         bookRepo.save(b1);
 
-
         System.out.println(c1);
-
-        //System.out.println(categoryRepo.findByBooksContainsOrName("Sp"));
     }
 }

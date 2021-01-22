@@ -20,11 +20,12 @@ public class App
         CategoryService categoryService = (CategoryService) appContext.getBean("categoryService");
         categoryService.categoryOperations();
 
+        BookService bookService= (BookService) appContext.getBean("bookService");
+        bookService.bookOperations();
+
         OrderService orderService= (OrderService) appContext.getBean("orderService");
         orderService.orderOperations();
 
-        BookService bookService= (BookService) appContext.getBean("bookService");
-        bookService.bookOperations();
         appContext.close();
     }
 }

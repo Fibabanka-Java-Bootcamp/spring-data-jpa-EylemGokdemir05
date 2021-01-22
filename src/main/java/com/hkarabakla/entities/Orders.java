@@ -17,11 +17,11 @@ public class Orders {
 
     private double total;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "book_orders",
             joinColumns = @JoinColumn(name = "order_id"),
